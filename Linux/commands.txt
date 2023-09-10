@@ -1,0 +1,4 @@
+xdg-open
+find
+update-grub
+fsdsk
