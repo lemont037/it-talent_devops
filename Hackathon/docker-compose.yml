@@ -1,0 +1,30 @@
+services:
+  app:
+    image: lemont037/go-mongo-crud-rest-api:latest
+    container_name: go-api-mongo
+    ports:
+      - 9080:9080
+    environment:
+      - MONGO_DB_HOST="mongodb"
+    networks:
+      - go-api-net
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongodb_vol:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - go-api-net
+
+volumes:
+    mongodb_vol:
+        external: false
+
+networks:
+  go-api-net:
+    name: go-api-net
